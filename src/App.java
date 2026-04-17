@@ -65,5 +65,13 @@ public class App {
         System.out.println("Comparações: " + selecao.getComparacoes());
         System.out.println("Movimentações: " + selecao.getMovimentacoes());
         System.out.println("Tempo de ordenação (ms): " + selecao.getTempoOrdenacao());
+
+        MergeSort<Integer> merge = new MergeSort<>();
+        Integer[] vetorOrdenadoMerge = merge.ordenar(vetor);
+
+        System.out.println("\nVetor ordenado método Merge Sort:");
+        System.out.println("Comparações: " + merge.getComparacoes());
+        System.out.println("Movimentações: " + merge.getMovimentacoes());
+        System.out.println("Tempo de ordenação (ms): " + merge.getTempoOrdenacao());
     }
 }
