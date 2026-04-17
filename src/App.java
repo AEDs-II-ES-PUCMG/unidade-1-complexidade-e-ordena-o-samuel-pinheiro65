@@ -41,18 +41,41 @@ public class App {
         int tam = 20;
         Integer[] vetor = gerarVetorObjetos(tam);
 
-        BubbleSort<Integer> bolha = new BubbleSort<>();
-
-        Integer[] vetorOrdenadoBolha = bolha.ordenar(vetor);
-
-        System.out.println("\nVetor ordenado método Bolha:");
+        System.out.println("=== TESTE DE ALGORITMOS DE ORDENAÇÃO ===\n");
+        
+        // Teste Bubblesort
+        Bubblesort<Integer> bolha = new Bubblesort<>();
+        Integer[] vetorOrdenadoBolha = bolha.ordenar(Arrays.copyOf(vetor, vetor.length));
+        System.out.println("Vetor ordenado método Bolha:");
         System.out.println("Comparações: " + bolha.getComparacoes());
         System.out.println("Movimentações: " + bolha.getMovimentacoes());
         System.out.println("Tempo de ordenação (ms): " + bolha.getTempoOrdenacao());
-
-        /* TO DO
-        *Fazer a implementacao do restante do main para a ordenacao 
-        *  com os algoritmos InsertionSort e SelectionSort
-        */
+        
+        // Teste InsertionSort
+        System.out.println("\n");
+        InsertionSort<Integer> insercao = new InsertionSort<>();
+        Integer[] vetorOrdenadoInsercao = insercao.ordenar(Arrays.copyOf(vetor, vetor.length));
+        System.out.println("Vetor ordenado método Inserção:");
+        System.out.println("Comparações: " + insercao.getComparacoes());
+        System.out.println("Movimentações: " + insercao.getMovimentacoes());
+        System.out.println("Tempo de ordenação (ms): " + insercao.getTempoOrdenacao());
+        
+        // Teste SelectionSort
+        System.out.println("\n");
+        SelectionSort<Integer> selecao = new SelectionSort<>();
+        Integer[] vetorOrdenadoSelecao = selecao.ordenar(Arrays.copyOf(vetor, vetor.length));
+        System.out.println("Vetor ordenado método Seleção:");
+        System.out.println("Comparações: " + selecao.getComparacoes());
+        System.out.println("Movimentações: " + selecao.getMovimentacoes());
+        System.out.println("Tempo de ordenação (ms): " + selecao.getTempoOrdenacao());
+        
+        // Teste Mergesort
+        System.out.println("\n");
+        Mergesort<Integer> merge = new Mergesort<>();
+        Integer[] vetorOrdenadoMerge = merge.ordenar(Arrays.copyOf(vetor, vetor.length));
+        System.out.println("Vetor ordenado método Mergesort:");
+        System.out.println("Comparações: " + merge.getComparacoes());
+        System.out.println("Movimentações: " + merge.getMovimentacoes());
+        System.out.println("Tempo de ordenação (ms): " + merge.getTempoOrdenacao());
     }
 }
