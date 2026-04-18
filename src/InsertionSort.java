@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import java.util.Arrays;
 
 public class InsertionSort<T extends Comparable<T>> implements IOrdenador<T> {
@@ -5,9 +6,34 @@ public class InsertionSort<T extends Comparable<T>> implements IOrdenador<T> {
     private int movimentacoes;
     private double tempoOrdenacao;
     private double inicio;
+=======
+import java.util.Comparator;
 
-    private double nanoToMilli = 1.0/1_000_000;
+public class InsertionSort<T extends Comparable<T>> implements IOrdenator<T> {
+>>>>>>> Stashed changes
 
+	private T[] dadosOrdenados;
+	private Comparator<T> comparador;
+	private long comparacoes;
+	private long movimentacoes;
+	private long inicio;
+	private long termino;
+	
+	public InsertionSort() {
+		
+		comparacoes = 0;
+		movimentacoes = 0;
+		setComparador(T::compareTo);
+	}
+	
+	public InsertionSort(Comparator<T> comparador) {
+		
+		comparacoes = 0;
+		movimentacoes = 0;
+		setComparador(comparador);
+	}
+
+<<<<<<< Updated upstream
     @Override
     public int getComparacoes() {
         return comparacoes;
@@ -60,3 +86,66 @@ public class InsertionSort<T extends Comparable<T>> implements IOrdenador<T> {
         return dadosOrdenados;
     }
 }
+=======
+	@Override
+	public void setComparador(Comparator<T> comparador) {
+		this.comparador = comparador;
+	}
+	
+	@Override
+	public T[] ordenar(T[] dados) {
+	
+		dadosOrdenados = dados;
+		
+		comparacoes = 0;
+		movimentacoes = 0;
+		iniciar();
+		
+		for (int i = 1; i < dadosOrdenados.length; i++) {
+			T item = dadosOrdenados[i];
+			int j = i - 1;
+
+			while ((j >= 0) && (comparador.compare(dadosOrdenados[j], item) > 0)) {
+				comparacoes++;
+				
+				movimentacoes++;
+				dadosOrdenados[j + 1] = dadosOrdenados[j];
+				j--;
+			}
+			movimentacoes++;
+			dadosOrdenados[j + 1] = item;
+		}
+		
+		terminar();
+		
+		return dadosOrdenados;
+	}
+	
+	@Override
+	public long getComparacoes() {
+		return comparacoes;
+	}
+	
+	@Override
+	public long getMovimentacoes() {
+		return movimentacoes;
+	}
+	
+	private void iniciar() {
+		inicio = System.nanoTime();
+	}
+	
+	private void terminar() {
+		termino = System.nanoTime();
+	}
+	
+	@Override
+	public double getTempoOrdenacao() {
+		
+		double tempoTotal;
+		
+	    tempoTotal = (termino - inicio) / 1_000_000;
+	    return tempoTotal;
+	}
+}
+>>>>>>> Stashed changes
